@@ -10,8 +10,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 mongoose.connect(
-  "mongodb+srv://bakers729:Brando1990$$@cluster0.oveoc.mongodb.net/workoutDB?retryWrites=true&w=majority",
-  process.env.MONGODB_URI || {
+  process.env.MONGODB_URI ||
+    "mongodb+srv://bakers729:Brando1990$$@cluster0.oveoc.mongodb.net/workoutDB?retryWrites=true&w=majority",
+  {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
