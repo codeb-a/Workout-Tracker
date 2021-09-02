@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 mongoose.connect(
-  "mongodb+srv://droidplease8:droidplease8@cluster0.5r0q7.mongodb.net/workoutdb?retryWrites=true&w=majority",
+  "mongodb+srv://bakers729:Brando1990$$@cluster0.oveoc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
