@@ -7,6 +7,7 @@
 This application allows the user to add and track their workouts.
 
 ![](images/workouttrackerpic1.png)
+![](images/workoutdash.png)
 
 ## Table of Contents
 
