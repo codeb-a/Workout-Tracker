@@ -22,7 +22,6 @@ router.put("/api/workouts/:id", ({ body, params }, res) => {
   Workout.findByIdAndUpdate(
     params.id,
     { $push: { exercises: body } },
-    // "runValidators" will ensure new exercises meet our schema requirements
     { new: true, runValidators: true }
   )
     .then((dbWorkout) => {
@@ -33,23 +32,19 @@ router.put("/api/workouts/:id", ({ body, params }, res) => {
     });
 });
 router.get("/api/workouts/range", (req, res) => {
-  Workout.aggregate([
-    {
-      $addFields: {
-        totalDuration: {
-          $sum: "$exercises.duration",
-        },
-      },
-    },
-  ])
-    .sort({ _id: -1 })
-    .limit(7)
-    .then((dbWorkouts) => {
-      console.log(dbWorkouts);
-      res.json(dbWorkouts);
-    })
-    .catch((err) => {
-      res.json(err);
+  Workout.find({}, (error, data) => {
+    data.forEach((workout) => {
+      let lastExerciseDuration = 0;
+      workout.exercises.forEach((exercise) => {
+        lastExerciseDuration += exercise.duration;
+      });
+      workout.totalDuration = lastExerciseDuration;
     });
+    if (error) {
+      res.send(error);
+    } else {
+      res.json(data);
+    }
+  });
 });
 module.exports = router;
